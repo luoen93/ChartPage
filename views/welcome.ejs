@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Char List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/dashboard.css" rel="stylesheet">
+
+    <link href="/stylesheets/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../javascripts/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+
+    <script src="../javascripts/echarts.js"></script>
+
+    <script src="../javascripts/bootstrap-datetimepicker.js"></script>
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#" onclick="showAtRight('welcome')">Overview</a></li>
+                <li><a href="#" onclick="showAtRight('logout')">Reports</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Export</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">Nav item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Chart</h1>
+
+                <div class="row placeholders">
+                    <div class="col-xs-6 col-sm-3 placeholder">
+
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+                             alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/sky" class="img-responsive"
+                             alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+                             alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                </div>
+
+                <h1 class="page-header">Chart</h1>
+                <div class="row placeholders">
+                    <div id="first_chart" style="width: 600px;height:400px;"></div>
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('first_chart'));
+
+                        // 指定图表的配置项和数据
+                        var option = {
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            toolbox: {
+                                feature: {
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {show: true, type: ['line', 'bar']},
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                }
+                            },
+                            legend: {
+                                data: ['蒸发量', '降水量', '平均温度']
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '水量',
+                                    min: 0,
+                                    max: 250,
+                                    interval: 50,
+                                    axisLabel: {
+                                        formatter: '{value} ml'
+                                    }
+                                },
+                                {
+                                    type: 'value',
+                                    name: '温度',
+                                    min: 0,
+                                    max: 25,
+                                    interval: 5,
+                                    axisLabel: {
+                                        formatter: '{value} °C'
+                                    }
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: '蒸发量',
+                                    type: 'bar',
+                                    data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                                },
+                                {
+                                    name: '降水量',
+                                    type: 'bar',
+                                    data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                                },
+                                {
+                                    name: '平均温度',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                                }
+                            ]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    </script>
+                </div>
+                <div class="container">
+                    <form action="" class="form-horizontal" role="form">
+
+                        <div class="form-group">
+                            <label for="dtp_input1" class="col-md-2 control-label">开始时间：</label>
+                            <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy mm dd"
+                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                <input id="start_time" class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            </div>
+                            <input type="hidden" id="dtp_input1" value=""/><br/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dtp_input2" class="col-md-2 control-label">结束时间：</label>
+                            <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy mm dd"
+                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                <input id="end_time" class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            </div>
+                            <input type="hidden" id="dtp_input2" value=""/><br/>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group col-md-3">
+                                <p>Show the time :</p>
+                                <input class="form-control" id="show_time1" type="text">
+                                <input class="form-control" id="show_time2" type="text">
+                            </div>
+                        </div>
+
+                    </form>
+                    <button class="btn btn-lg btn-primary" id="time_button" onclick="showtime()">Show Time</button>
+
+                </div>
+
+                <h2 class="sub-header">Section title</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Header</th>
+                            <th>Header</th>
+                            <th>Header</th>
+                            <th>Header</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1,001</td>
+                            <td>Lorem</td>
+                            <td>ipsum</td>
+                            <td>dolor</td>
+                            <td>sit</td>
+                        </tr>
+                        <tr>
+                            <td>1,002</td>
+                            <td>amet</td>
+                            <td>consectetur</td>
+                            <td>adipiscing</td>
+                            <td>elit</td>
+                        </tr>
+                        <tr>
+                            <td>1,003</td>
+                            <td>Integer</td>
+                            <td>nec</td>
+                            <td>odio</td>
+                            <td>Praesent</td>
+                        </tr>
+                        <tr>
+                            <td>1,003</td>
+                            <td>libero</td>
+                            <td>Sed</td>
+                            <td>cursus</td>
+                            <td>ante</td>
+                        </tr>
+                        <tr>
+                            <td>1,004</td>
+                            <td>dapibus</td>
+                            <td>diam</td>
+                            <td>Sed</td>
+                            <td>nisi</td>
+                        </tr>
+                        <tr>
+                            <td>1,005</td>
+                            <td>Nulla</td>
+                            <td>quis</td>
+                            <td>sem</td>
+                            <td>at</td>
+                        </tr>
+                        <tr>
+                            <td>1,006</td>
+                            <td>nibh</td>
+                            <td>elementum</td>
+                            <td>imperdiet</td>
+                            <td>Duis</td>
+                        </tr>
+                        <tr>
+                            <td>1,007</td>
+                            <td>sagittis</td>
+                            <td>ipsum</td>
+                            <td>Praesent</td>
+                            <td>mauris</td>
+                        </tr>
+                        <tr>
+                            <td>1,008</td>
+                            <td>Fusce</td>
+                            <td>nec</td>
+                            <td>tellus</td>
+                            <td>sed</td>
+                        </tr>
+                        <tr>
+                            <td>1,009</td>
+                            <td>augue</td>
+                            <td>semper</td>
+                            <td>porta</td>
+                            <td>Mauris</td>
+                        </tr>
+                        <tr>
+                            <td>1,010</td>
+                            <td>massa</td>
+                            <td>Vestibulum</td>
+                            <td>lacinia</td>
+                            <td>arcu</td>
+                        </tr>
+                        <tr>
+                            <td>1,011</td>
+                            <td>eget</td>
+                            <td>nulla</td>
+                            <td>Class</td>
+                            <td>aptent</td>
+                        </tr>
+                        <tr>
+                            <td>1,012</td>
+                            <td>taciti</td>
+                            <td>sociosqu</td>
+                            <td>ad</td>
+                            <td>litora</td>
+                        </tr>
+                        <tr>
+                            <td>1,013</td>
+                            <td>torquent</td>
+                            <td>per</td>
+                            <td>conubia</td>
+                            <td>nostra</td>
+                        </tr>
+                        <tr>
+                            <td>1,014</td>
+                            <td>per</td>
+                            <td>inceptos</td>
+                            <td>himenaeos</td>
+                            <td>Curabitur</td>
+                        </tr>
+                        <tr>
+                            <td>1,015</td>
+                            <td>sodales</td>
+                            <td>ligula</td>
+                            <td>in</td>
+                            <td>libero</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        language: 'zh-CN',
+        format: 'yyyy-mm-dd',
+        weekStart: 0,
+        todayBtn: true,
+        autoclose: true,
+        todayHighlight: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false
+    });
+
+    function showtime() {
+        document.getElementById('show_time1').value = document.getElementById('start_time').value;
+        document.getElementById('show_time2').value = document.getElementById('end_time').value;
+    }
+
+
+
+</script>
+</body>
+</html>
